@@ -1,0 +1,22 @@
+// Digital Kitab of English Grammar - Prisma Schema
+// Local: SQLite | Production: change to postgresql
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Tense {
+  id           String   @id @default(cuid())
+  name         String
+  purpose      String
+  formulaParts String   // JSON array stored as string
+  notes        String?
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
